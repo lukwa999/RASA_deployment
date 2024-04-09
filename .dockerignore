@@ -1,7 +1,6 @@
 tests/*
-models/*
-actions/*
 **/*.md
+venv
 
 regex.yml
 graph.html
