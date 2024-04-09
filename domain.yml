@@ -1,33 +1,91 @@
-version: "3.1"
-
+version: '3.1'
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+- ask_time_open:
+    use_entities: []
+- goodbye
+- greet
+- greet+ask_time:
+    use_entities: []
+- nlu_fallback
+- ask_day_open:
+    use_entities: []
+- ask_day_close:
+    use_entities: []
+
+entities:
+ - present
+ - date
+ - open
+ - close
+
+slots:
+  ask_day_open:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: date
+    - type: from_entity
+      entity: open
+
+  ask_day_close:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: date
+    - type: from_entity
+      entity: close
+
+  ask_time_open:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: date
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
+  - text: สวัสดีครับ มีอะไรให้ช่วยครับ
   utter_goodbye:
-  - text: "Bye"
+  - text: ลาก่อนครับ หากมีคำถามเพิ่มเติม ติดต่อเราได้เสมอครับ
+  utter_time:
+  - text: วันนี้ห้องสมุดเปิดตั้งเวลา 8:00 น. - 20:00 น. ครับ ถ้าเป็นวันจันทร์ถึงศุกร์ ส่วนวันเสาร์เปิดเวลา 9:00 น. - 18:00 น ครับ
+  utter_blank:
+  - text: กรุณาใส่ข้อความเพื่อถามเรา
+  utter_fallback:
+  - text: เราไม่เข้าใจที่คุณถาม กรุณาถามใหม่อีกครั้ง
+  utter_time_monday:
+  - text: วันจันทร์ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
+  utter_time_tuesday:
+  - text: วันอังคาร ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
+  utter_time_wednesday:
+  - text: วันพุธ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
+  utter_time_thursday:
+  - text: วันพฤหัสบดี ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
+  utter_time_friday:
+  - text: วันศุกร์ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
+  utter_time_saturday:
+  - text: วันเสาร์ ห้องสมุดเปิดตั้งแต่เวลา 9:00 น. - 18:00 น ครับ
+  utter_open_monday:
+  - text: วันจันทร์ ห้องสมุดเปิดทำการตามปกติครับ
+  utter_open_tuesday:
+  - text: วันอังคาร ห้องสมุดเปิดทำการตามปกติครับ
+  utter_open_wednesday:
+  - text: วันพุธ ห้องสมุดเปิดทำการตามปกติครับ
+  utter_open_thursday:
+  - text: วันพฤหัสบดี ห้องสมุดเปิดทำการตามปกติครับ
+  utter_open_friday:
+  - text: วันศุกร์ ห้องสมุดเปิดทำการตามปกติครับ
+  utter_open_saturday:
+  - text: วันเสาร์ ห้องสมุดเปิดทำการตามปกติครับ
+  utter_sunday:
+  - text: วันอาทิตย์ ห้องสมุดปิดทำการครับ
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+actions:
+- action_default_fallback
+- action_handle_date
+- action_handle_time
 
 session_config:
   session_expiration_time: 60

@@ -1,0 +1,8 @@
+tests/*
+models/*
+actions/*
+**/*.md
+
+regex.yml
+graph.html
+story_graph.dot

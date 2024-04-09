@@ -1,0 +1,9 @@
+venv/
+models/
+results/
+.rasa/
+.config/
+__pycache__
+
+pyvenv.cfg
+regex.yml

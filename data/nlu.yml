@@ -1,91 +1,295 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - สวัสดีครับ
+    - สวัสดีคับ
+    - สวัสดีค่ะ
+    - สวัสดี
+    - หวัดดี
+    - หวัดดีครับ
+    - หวัดดีค่ะ
+    - หวัดดีคับ
+    - ดี
+    - ดีครับ
+    - ดีค่ะ
+    - ดีคับ
+    - สวัสดีครับ มีเรื่องอยากสอบถามครับ
+    - สวัสดีคับ มีเรื่องอยากสอบถามคับ
+    - สวัสดีค่ะ มีเรื่องอยากสอบถามค่ะ
+    - สวัสดี มีเรื่องอยากสอบถาม
+    - หวัดดี มีเรื่องอยากสอบถาม
+    - หวัดดีครับ มีเรื่องอยากสอบถามครับ
+    - หวัดดีค่ะ มีเรื่องอยากสอบถามค่ะ
+    - หวัดดีคับ มีเรื่องอยากสอบถามคับ
+    - ดี มีเรื่องอยากสอบถาม
+    - ดีครับ มีเรื่องอยากสอบถามครับ
+    - ดีค่ะ มีเรื่องอยากสอบถามค่ะ
+    - ดีคับ มีเรื่องอยากสอบถามคับ
+    - สวัสดีครับผม มีเรื่องอยากสอบถามครับ
+    - สวัสดีคับผม มีเรื่องอยากสอบถามครับ
+    - สวัสดีคับผม มีเรื่องอยากสอบถามคับ
+    - สวัสดี มีเรื่องอยากถาม
+    - สวัสดีคับ มีเรื่องอยากถามคับ
+    - สวัสดีครับ มีเรื่องอยากถามครับ
+    - สวัสดีค่ะ มีเรื่องอยากถามค่ะ
+    - สวัสดีครับผม มีเรื่องอยากถามครับผม
+    - หวัดดีครับ มีเรื่องอยากถามครับ
+    - หวัดดีคับ มีเรื่องอยากถามคับ
+    - หวัดดี มีเรื่องอยากถาม
+    - หวัดดีค่ะ มีเรื่องอยากถามค่ะ
+    - สวัสดีครับ อยากรู้ว่า
+    - สวัสดีคับ อยากรู้ว่า
+    - สวัสดีค่ะ อยากรู้ว่า
+    - สวัสดีครับผม อยากรู้ว่า
+    - สวัสดี อยากรู้ว่า
+    - หวัดดีคับ อยากรู้ว่า
+    - หวัดดีครับ อยากรู้ว่า
+    - หวัดดี อยากรู้ว่า
+    - หวัดดีค่ะ อยากรู้ว่า
+
+- intent: ask_time_open
+  examples: |
+    - วันจันทร์ถึงศุกร์ห้องสมุด[เปิด]{"entity": "open"}ที่เวลาไหนครับ
+    - วันเสาร์ห้องสมุด[เปิด]{"entity": "open"}ตอนไหนครับ
+    - วันที่ห้องสมุด[เปิด]{"entity": "open"}ตั้งแต่ 8:00 โมง คือวันไหนบ้าง ครับ
+    - วันที่ห้องสมุด[เปิด]{"entity": "open"}ตั้งแต่ 9:00 โมง คือวันไหนบ้าง ครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}ที่กี่ชั่วโมง ครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}ที่กี่โมง ครับ
+    - วันนี้ี้ห้องสมุด[เปิด]{"entity": "open"}กี่โมง ครับ
+    - วันนี้ห้องสมุุด[เปิด]{"entity": "open"}ตั้งแต่กีโมงหรอ ครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}กี่โมงถึงกี่โมงหรอ ครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}กี่โมงถึงกี่โมง
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}ที่กี่โมงครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}กี่โมงถึงกี่โมงครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}ที่เวลาไหนครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}บริการตอนไหนครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}ให้บริการตอนไหนหรอครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}ที่เที่ยงคืนไหมครับ
+    - วันนี้ห้องสมุด[เปิด]{"entity": "open"}กี่โมง
+    - ห้องสมุด[เปิด]{"entity": "open"}ตอนไหน
+    - ห้องสมุด[เปิด]{"entity": "open"}ตอนไหนครับ
+    - ห้อง[เปิด]{"entity": "open"}ตอนไหนคับ
+    - ห้องสมุด[เปิด]{"entity": "open"}กี่โมงครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}กี่โมงคับ
+    - ห้องสมุด[เปิด]{"entity": "open"}กี่โมง
+    - ห้องสมุด[เปิด]{"entity": "open"}เมื่อไหร่
+    - ช่วงนี้ห้องสมุด[เปิด]{"entity": "open"}กี่โมงคะ
+    - วันเสาร์ห้องสมุด[เปิด]{"entity": "open"}ตอนไหนคะ
+    - วันเสาร์ห้องสมุด[เปิด]{"entity": "open"}ตอนไหนค่ะ
+
+- intent: ask_day_open
+  examples: |
+    - ถ้าจะเข้าใช้บริการ[วันนี้]{"entity": "present"}ห้องสมุด[เปิด]{"entity": "open"}ไหมครับ
+    - ถ้าจะเข้าใช้บริการ[วันนี้]{"entity": "present"}ห้องสมุด[เปิด]{"entity": "open"}มั้ยคับ
+    - ห้องสมุด[วันนี้]{"entity": "present"}[เปิด]{"entity": "open"}ไหมค่ะ
+    - ห้องสมุด[วันนี้]{"entity": "present"}[เปิด]{"entity": "open"}มั้ยคะ
+    - [วันนี้]{"entity": "present"}ห้องสมุด[เปิด]{"entity": "open"}ให้บริการไหมครับ
+    - [วันนี้]{"entity": "present"}ห้องสมุด[เปิด]{"entity": "open"}ให้บริการมั้ยคับ
+    - ห้องสมุด[เปิด]{"entity": "open"}ไหมครับ
+    - ห้องสมุด[เปิด]{"entity": "open"}มั้ยค่ะ
+    - [วันนี้]{"entity": "present"}[เปิด]{"entity": "open"}ห้องสมุดไหมคะ
+    - [วันนี้]{"entity": "present"}[เปิด]{"entity": "open"}ห้องสมุดมั้ยครับ
+    - วัน[จัน]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[จันทร์]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [จัน]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [จันทร์]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[จัน]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[จันทร์]{"entity": "date"}มั้ย
+    - วัน[อังคาร]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[อังคาน]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [อังคาร]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [อังคาน]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[อังคาร]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[อังคาน]{"entity": "date"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}[อังคาน]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[อังคาร]{"entity": "date"}นี้มั้ย
+    - วัน[พุธ]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[พุท]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - วัน[พุด]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [พุธ]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [พุท]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [พุด]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[พุธ]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[พุท]{"entity": "date"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[พุด]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[พุธ]{"entity": "date"}นี้มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}[พุท]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[พุด]{"entity": "date"}นี้มั้ย
+    - วัน[พฤหัส]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [พฤหัส]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[พฤหัส]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[พฤหัส]{"entity": "date"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}[พฤหัส]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[พฤหัส]{"entity": "date"}นี้มั้ย
+    - วัน[ศุก]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[สุก]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - วัน[สุข]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [ศุก]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [สุก]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [สุข]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[ศุก]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[สุก]{"entity": "date"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}[สุก]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[ศุก]{"entity": "date"}นี้มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[สุข]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}[สุข]{"entity": "date"}นี้มั้ย
+    - วัน[เสา]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[เสาร์]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [เสา]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [เสาร์]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[เสา]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[เสาร์]{"entity": "date"}มั้ย
+    - วัน[อาทิต]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - วัน[อาทิด]{"entity": "date"}ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - [อาทิต]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}ไหม
+    - [อาทิด]{"entity": "date"}นี้ห้องสมุด[เปิด]{"entity": "open"}มั้ย
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[อาทิต]{"entity": "date"}ไหม
+    - ห้องสมุด[เปิด]{"entity": "open"}วัน[อาทิด]{"entity": "date"}มั้ย
+
+- intent: ask_day_close
+  examples: |
+    - ถ้าจะเข้าใช้บริการ[วันนี้]{"entity": "present"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - ถ้าจะเข้าใช้บริการ[วันนี้]{"entity": "present"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[วันนี้]{"entity": "present"}[ปิด]{"entity": "close"}ไหม
+    - ห้องสมุด[วันนี้]{"entity": "present"}[ปิด]{"entity": "close"}มั้ย
+    - [วันนี้]{"entity": "present"}ห้องสมุด[ปิด]{"entity": "close"}ให้บริการไหม
+    - [วันนี้]{"entity": "present"}ห้องสมุด[ปิด]{"entity": "close"}ให้บริการมั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [วันนี้]{"entity": "present"}[ปิด]{"entity": "close"}ห้องสมุดไหม
+    - [วันนี้]{"entity": "present"}[ปิด]{"entity": "close"}ห้องสมุดมั้ย
+    - วัน[จัน]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[จันทร์]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [จัน]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [จันทร์]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[จัน]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[จันทร์]{"entity": "date"}มั้ย
+    - วัน[อังคาร]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[อังคาน]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [อังคาร]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [อังคาน]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[อังคาร]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[อังคาน]{"entity": "date"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}[อังคาน]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[อังคาร]{"entity": "date"}นี้มั้ย
+    - วัน[พุธ]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[พุท]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - วัน[พุด]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [พุธ]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [พุท]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [พุด]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[พุธ]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[พุท]{"entity": "date"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[พุด]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[พุธ]{"entity": "date"} นี้มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}[พุท]{"entity": "date"} นี้ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[พุด]{"entity": "date"} นี้มั้ย
+    - วัน[พฤหัส]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [พฤหัส]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[พฤหัส]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[พฤหัส]{"entity": "date"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}[พฤหัส]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[พฤหัส]{"entity": "date"}นี้มั้ย
+    - วัน[ศุก]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[สุก]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - วัน[สุข]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [ศุก]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [สุก]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [สุข]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[ศุก]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[สุก]{"entity": "date"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}[สุก]{"entity": "date"}นี้ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[ศุก]{"entity": "date"}นี้มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[สุข]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}[สุข]{"entity": "date"}นี้มั้ย
+    - วัน[เสา]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[เสาร์]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [เสา]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [เสาร์]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[เสา]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[เสาร์]{"entity": "date"}มั้ย
+    - วัน[อาทิต]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - วัน[อาทิด]{"entity": "date"}ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - [อาทิต]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}ไหม
+    - [อาทิด]{"entity": "date"}นี้ห้องสมุด[ปิด]{"entity": "close"}มั้ย
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[อาทิต]{"entity": "date"}ไหม
+    - ห้องสมุด[ปิด]{"entity": "close"}วัน[อาทิด]{"entity": "date"}มั้ย
+    
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - ลาก่อน
+    - ลาก่อนครับ
+    - ลาก่อนคับ
+    - ลาก่อนค่ะ
+    - บาย
+    - บายครับ
+    - บายคับ
+    - บายค่ะ
+    - ขอบคุณ
+    - ขอบคุณครับ
+    - ขอบคุณคับ
+    - ขอบคุณค่ะ
+    - ลาก่อน ขอบคุณ
+    - ลาก่อนครับ ขอบคุณครับ
+    - ลาก่อนคับ ขอบคุณคับ
+    - ลาก่อนค่ะ ขอบคุณค่ะ
+    - บาย ขอบคุณ
+    - บายครับ ขอบคุณครับ
+    - บายคับ ขอบคุณคับ
+    - บายค่ะ ขอบคุณค่ะ
+    - ขอบคุณครับผม
 
-- intent: affirm
+- intent: greet+ask_time
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - สวัสดีครับ วันนี้ห้องสมุดเปิดให้บริการกี่โมงครับครับ
+    - สวัสดี วันนี้ห้องสมุดเปิดกี่โมง
+    - สวัสดีครับ ห้องสมุดเปิดกี่โมงครับวันนี้
+    - สวัสดีค่ะ ห้องสมุดเปิดกี่โมงค่ะ
 
-- intent: deny
+- regex: close
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - \B(ปิด)
+    - \b(ปิด)
 
-- intent: mood_great
+- regex: date
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - \B(จัน)
+    - \B(พฤหัส)
+    - \B(พุด)
+    - \B(พุท)
+    - \B(พุธ)
+    - \B(ศุก)
+    - \B(สุก)
+    - \B(สุข)
+    - \B(อังคาน)
+    - \B(อังคาร)
+    - \B(อาทิด)
+    - \B(อาทิต)
+    - \B(เสา)
+    - \b(จัน)
+    - \b(พฤหัส)
+    - \b(พุด)
+    - \b(พุท)
+    - \b(พุธ)
+    - \b(ศุก)
+    - \b(สุก)
+    - \b(สุข)
+    - \b(อังคาน)
+    - \b(อังคาร)
+    - \b(อาทิด)
+    - \b(อาทิต)
+    - \b(เสา)
 
-- intent: mood_unhappy
+- regex: open
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - \B(เปิด)
+    - \b(เปิด)
 
-- intent: bot_challenge
+- regex: present
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - \B(ตอนนี)
+    - \B(วันนี)
+    - \b(ตอนนี)
+    - \b(วันนี)

@@ -1,91 +1,83 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
-
+version: "3.1"
 stories:
-- story: happy path 1
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+  - story: ask time 1
+    steps:
+      - user: |
+          สวัสดี
+        intent: greet
+      - action: utter_greet
+      - user: |
+          ห้องสมุดเปิดกี่โมง
+        intent: ask_time_open
+      - action: utter_time
 
-- story: happy path 2
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
+  - story: greet and goodbye
+    steps:
+      - user: |
+          สวัสดี
+        intent: greet
+      - action: utter_greet
+      - user: |
+          บาย
+        intent: goodbye
+      - action: utter_goodbye
 
-- story: sad path 1
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
+  - story: combined path 1
+    steps:
+      - user: |
+          สวัสดีครับ วันนี้ห้องสมุดเปิดกี่โมงครับ
+        intent: greet+ask_time
+      - action: utter_greet
+      - action: utter_time
 
-- story: sad path 2
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
+  - story: Fallback scenario
+    steps:
+      - user: |
+          อะไรวะมันทำได้ยังไงว้าาาาา
+        intent: nlu_fallback
+      - action: action_default_fallback
 
-- story: sad path 3
-  steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
+  - story: Respond with open date
+    steps:
+      - user: |
+          วันจันทร์ห้องสมุดเปิดไหม
+        intent: ask_day_open
+        entities:
+          - date: วันจันทร์
+      - action: action_handle_date
+  
+  - story: Respond with open date and greeting
+    steps:
+      - user: |
+          หวัดดีคับ
+        intent: greet
+      - action: utter_greet
+      - user: |
+          วันอาทิตห้องสมุดเปิดมั้ยค่ะ
+        intent: ask_day_open
+        entities:
+          - date: อาทิต
+      - action: action_handle_date
+      - user: |
+          ขอบใจมาก
+        intent: goodbye
+      - action: utter_goodbye
 
-- story: say goodbye
-  steps:
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: bot challenge
-  steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+  - story: Respond with close date and greeting
+    steps:
+      - user: |
+          สวัสดีคัย
+        intent: greet
+      - action: utter_greet
+      - user: |
+          วันพฤหัสห้องสมุดปิดมั้ยค่ะ
+        intent: ask_day_close
+        entities:
+          - date: พฤหัส
+      - action: action_handle_date
+      - user: |
+          ขอบใจมาก
+        intent: goodbye
+      - action: utter_goodbye

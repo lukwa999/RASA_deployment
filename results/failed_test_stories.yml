@@ -1,0 +1,37 @@
+version: "3.1"
+stories:
+- story: ask time 1 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_time_open  # predicted: ask_day_open: ห้องสมุด[เปิด](open)[ปิด](close)กี่โมง
+  - action: utter_time
+- story: combined path 1 (.\tests\test_stories.yml)
+  steps:
+  - intent: greet+ask_time  # predicted: greet: สวัสดีครับ [วันนี](present)้ห้องสมุด[เปิด](open)[ปิด](close)กี่โมงครับ
+  - action: utter_greet
+  - action: utter_time
+- story: Fallback scenario (.\tests\test_stories.yml)
+  steps:
+  - intent: nlu_fallback  # predicted: ask_day_open: อะไรวะมันทำได้ยังไงว้าาาาา
+  - action: action_default_fallback
+- story: Respond with open date (.\tests\test_stories.yml)
+  steps:
+  - intent: ask_day_open  # predicted: ask_day_open: วัน[จัน](date)ทร์ห้องสมุด[เปิด](open)[ปิด](close)ไหม
+  - action: action_handle_date
+- story: Respond with open date and greeting (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_day_open  # predicted: ask_day_open: วัน[อาทิต](date)ห้องสมุด[เปิด](open)[ปิด](close)มั้ยค่ะ
+  - action: action_handle_date
+  - intent: goodbye  # predicted: ask_day_open: ขอบใจมาก
+  - action: utter_goodbye
+- story: Respond with close date and greeting (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_day_close  # predicted: ask_day_open: วัน[พฤหัส](date)ห้องสมุด[ปิด](close)มั้ยค่ะ
+  - action: action_handle_date
+  - intent: goodbye  # predicted: ask_day_open: ขอบใจมาก
+  - action: utter_goodbye

@@ -1,0 +1,466 @@
+[
+  {
+    "text": "สวัสดีค่ะ",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "หวัดดีค่ะ",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ดีค่ะ",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันจันทร์ถึงศุกร์ห้องสมุดเปิดที่เวลาไหนครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันเสาร์ห้องสมุดเปิดตอนไหนครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.3741806757778879
+    }
+  },
+  {
+    "text": "วันที่ห้องสมุดเปิดตั้งแต่ 8:00 โมง คือวันไหนบ้าง ครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.47302465735953725
+    }
+  },
+  {
+    "text": "วันที่ห้องสมุดเปิดตั้งแต่ 9:00 โมง คือวันไหนบ้าง ครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.49225210151311416
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดเปิดกี่โมงถึงกี่โมง",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดเปิดที่กี่โมงครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดกี่โมงถึงกี่โมงครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดเปิดที่เวลาไหนครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.49568794979076947
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดให้บริการตอนไหนหรอครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดเปิดที่เที่ยงคืนไหมครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.506673413699072
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดเปิดกี่โมง",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดตอนไหน",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_close",
+      "confidence": 0.4606873028172787
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดกี่โมงครับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดกี่โมงคับ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดกี่โมง",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดเปิดเมื่อไหร่",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.488294825911756
+    }
+  },
+  {
+    "text": "ช่วงนี้ห้องสมุดเปิดกี่โมงคะ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันเสาร์ห้องสมุดเปิดตอนไหนคะ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันเสาร์ห้องสมุดเปิดตอนไหนค่ะ",
+    "intent": "ask_time_open",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ถ้าจะเข้าใช้บริการวันนี้ห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ถ้าจะเข้าใช้บริการวันนี้ห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดปิดให้บริการไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันนี้ห้องสมุดปิดให้บริการมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันพุธห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันพุทห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันพุดห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "พุธนี้ห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "พุทนี้ห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "พุดนี้ห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันพุธไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันพุทมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันพุดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันพฤหัสห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "พฤหัสนี้ห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันพฤหัสไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันพฤหัสมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดพฤหัสนี้ไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดพฤหัสนี้มั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "วันศุกห้องสมุดปิดไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ศุกนี้ห้องสมุดปิดมั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดวันศุกไหม",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ห้องสมุดปิดศุกนี้มั้ย",
+    "intent": "ask_day_close",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ลาก่อนค่ะ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "บายค่ะ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ขอบคุณ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ขอบคุณครับ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ขอบคุณคับ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ขอบคุณค่ะ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "ลาก่อนค่ะ ขอบคุณค่ะ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8025187051905741
+    }
+  },
+  {
+    "text": "บายค่ะ ขอบคุณค่ะ",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8025187051905741
+    }
+  },
+  {
+    "text": "ขอบคุณครับผม",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "ask_day_open",
+      "confidence": 0.5615566038974219
+    }
+  },
+  {
+    "text": "สวัสดีครับ วันนี้ห้องสมุดเปิดให้บริการกี่โมงครับครับ",
+    "intent": "greet+ask_time",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8169770749028696
+    }
+  },
+  {
+    "text": "สวัสดี วันนี้ห้องสมุดเปิดกี่โมง",
+    "intent": "greet+ask_time",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8175024231657166
+    }
+  },
+  {
+    "text": "สวัสดีครับ ห้องสมุดเปิดกี่โมงครับวันนี้",
+    "intent": "greet+ask_time",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8169770749028696
+    }
+  },
+  {
+    "text": "สวัสดีค่ะ ห้องสมุดเปิดกี่โมงค่ะ",
+    "intent": "greet+ask_time",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.8025187051905741
+    }
+  }
+]

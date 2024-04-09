@@ -1,13 +1,42 @@
+# data/rules.yml
 version: "3.1"
-
 rules:
+  - rule: Respond with greet
+    conversation_start: true
+    steps:
+      - intent: greet
+      - action: utter_greet
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - rule: Respond with goodbye when the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
-  steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - rule: Respond time
+    steps:
+      - intent: ask_time_open
+      - action: utter_time
+
+  - rule: Fallback rule
+    steps:
+      - intent: nlu_fallback
+      - action: action_default_fallback
+    condition:
+      - active_loop: null
+
+  - rule: Respond with greet and ask_time_open
+    steps:
+      - intent: greet+ask_time
+      - action: utter_greet
+      - action: utter_time
+
+  - rule: Respond with open date
+    steps:
+      - intent: ask_day_open
+      - action: action_handle_date
+  
+  - rule: Respond with close date
+    steps:
+      - intent: ask_day_close
+      - action: action_handle_date
+

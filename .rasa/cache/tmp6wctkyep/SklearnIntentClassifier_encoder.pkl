@@ -1,0 +1,1 @@
+{"py/object": "numpy.ndarray", "dtype": "<U14", "values": ["ask_day_close", "ask_day_open", "ask_time_open", "goodbye", "greet", "greet+ask_time"]}
