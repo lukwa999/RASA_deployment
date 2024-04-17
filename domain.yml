@@ -1,49 +1,81 @@
 version: '3.1'
 intents:
-- ask_time_open:
-    use_entities: []
 - goodbye
 - greet
-- greet+ask_time:
-    use_entities: []
 - nlu_fallback
-- ask_day_open:
+- tutor_step
+- tutor_available
+- ask_day_open_close:
     use_entities: []
-- ask_day_close:
+- ask_time_open_close:
     use_entities: []
 
 entities:
- - present
- - date
+ - today
+ - now
+ - monday
+ - tuesday
+ - wednesday
+ - thursday
+ - friday
+ - saturday
+ - sunday
  - open
  - close
 
 slots:
-  ask_day_open:
-    type: list
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: date
-    - type: from_entity
-      entity: open
-
-  ask_day_close:
-    type: list
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: date
-    - type: from_entity
-      entity: close
-
-  ask_time_open:
+  ask_day_open_close:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: date
-
+      entity: monday
+    - type: from_entity
+      entity: tuesday
+    - type: from_entity
+      entity: wednesday
+    - type: from_entity
+      entity: thursday
+    - type: from_entity
+      entity: friday
+    - type: from_entity
+      entity: saturday
+    - type: from_entity
+      entity: sunday
+    - type: from_entity
+      entity: close
+    - type: from_entity
+      entity: open
+    - type: from_entity
+      entity: today
+  
+  ask_time_open_close:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: monday
+    - type: from_entity
+      entity: tuesday
+    - type: from_entity
+      entity: wednesday
+    - type: from_entity
+      entity: thursday
+    - type: from_entity
+      entity: friday
+    - type: from_entity
+      entity: saturday
+    - type: from_entity
+      entity: sunday
+    - type: from_entity
+      entity: close
+    - type: from_entity
+      entity: open
+    - type: from_entity
+      entity: today
+    - type: from_entity
+      entity: now
+      
 responses:
   utter_greet:
   - text: สวัสดีครับ มีอะไรให้ช่วยครับ
@@ -55,38 +87,16 @@ responses:
   - text: กรุณาใส่ข้อความเพื่อถามเรา
   utter_fallback:
   - text: เราไม่เข้าใจที่คุณถาม กรุณาถามใหม่อีกครั้ง
-  utter_time_monday:
-  - text: วันจันทร์ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
-  utter_time_tuesday:
-  - text: วันอังคาร ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
-  utter_time_wednesday:
-  - text: วันพุธ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
-  utter_time_thursday:
-  - text: วันพฤหัสบดี ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
-  utter_time_friday:
-  - text: วันศุกร์ ห้องสมุดเปิดตั้งแต่เวลา 8:00 น. - 20:00 น ครับ
-  utter_time_saturday:
-  - text: วันเสาร์ ห้องสมุดเปิดตั้งแต่เวลา 9:00 น. - 18:00 น ครับ
-  utter_open_monday:
-  - text: วันจันทร์ ห้องสมุดเปิดทำการตามปกติครับ
-  utter_open_tuesday:
-  - text: วันอังคาร ห้องสมุดเปิดทำการตามปกติครับ
-  utter_open_wednesday:
-  - text: วันพุธ ห้องสมุดเปิดทำการตามปกติครับ
-  utter_open_thursday:
-  - text: วันพฤหัสบดี ห้องสมุดเปิดทำการตามปกติครับ
-  utter_open_friday:
-  - text: วันศุกร์ ห้องสมุดเปิดทำการตามปกติครับ
-  utter_open_saturday:
-  - text: วันเสาร์ ห้องสมุดเปิดทำการตามปกติครับ
-  utter_sunday:
-  - text: วันอาทิตย์ ห้องสมุดปิดทำการครับ
+  utter_tutor_available:
+  - text: สามารถตรวจเช็คได้ที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้วสามารถดูได้เลยวิทยาเขตของท่านยังว่างอยู่หรือไม่
+  utter_tutor_step:
+  - text: สามารถตรวจเช็คได้ที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้ว ทำการกดไปที่ booking ในวิทยาเขตที่ท่านต้องการ แล้ว login ด้วยรหัส icit ได้เลย
 
 actions:
 - action_default_fallback
-- action_handle_date
-- action_handle_time
+- action_handle_library_open_close
+- action_handle_time_open_close
 
 session_config:
   session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  carry_over_slots_to_new_session: false

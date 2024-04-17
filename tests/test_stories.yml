@@ -2,16 +2,6 @@
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 version: "3.1"
 stories:
-  - story: ask time 1
-    steps:
-      - user: |
-          สวัสดี
-        intent: greet
-      - action: utter_greet
-      - user: |
-          ห้องสมุดเปิดกี่โมง
-        intent: ask_time_open
-      - action: utter_time
 
   - story: greet and goodbye
     steps:
@@ -24,14 +14,6 @@ stories:
         intent: goodbye
       - action: utter_goodbye
 
-  - story: combined path 1
-    steps:
-      - user: |
-          สวัสดีครับ วันนี้ห้องสมุดเปิดกี่โมงครับ
-        intent: greet+ask_time
-      - action: utter_greet
-      - action: utter_time
-
   - story: Fallback scenario
     steps:
       - user: |
@@ -42,11 +24,12 @@ stories:
   - story: Respond with open date
     steps:
       - user: |
-          วันจันทร์ห้องสมุดเปิดไหม
-        intent: ask_day_open
+          [วันจันทร์](monday)ห้องสมุด[เปิด](open)ไหม
+        intent: ask_day_open_close
         entities:
-          - date: วันจันทร์
-      - action: action_handle_date
+          - monday: วันจันทร์
+          - open: เปิด
+      - action: action_handle_library_open_close
   
   - story: Respond with open date and greeting
     steps:
@@ -55,13 +38,14 @@ stories:
         intent: greet
       - action: utter_greet
       - user: |
-          วันอาทิตห้องสมุดเปิดมั้ยค่ะ
-        intent: ask_day_open
+          [วันอาทิต](sunday)ห้องสมุด[เปิด](open)มั้ยค่ะ
+        intent: ask_day_open_close
         entities:
-          - date: อาทิต
-      - action: action_handle_date
+          - sunday: วันอาทิต
+          - close: เปิด
+      - action: action_handle_library_open_close
       - user: |
-          ขอบใจมาก
+          ขอบคุณครับ
         intent: goodbye
       - action: utter_goodbye
 
@@ -72,12 +56,67 @@ stories:
         intent: greet
       - action: utter_greet
       - user: |
-          วันพฤหัสห้องสมุดปิดมั้ยค่ะ
-        intent: ask_day_close
+          วัน[พฤหัส](thursday)ห้องสมุด[ปิด](close)มั้ยค่ะ
+        intent: ask_day_open_close
         entities:
-          - date: พฤหัส
-      - action: action_handle_date
+          - thursday: พฤหัส
+          - close: ปิด
+      - action: action_handle_library_open_close
       - user: |
           ขอบใจมาก
         intent: goodbye
       - action: utter_goodbye
+  
+  - story: Respond with ask time open now
+    steps:
+      - user: |
+          [ตอนนี่](now)ห้องสมุด[เปิด](open)ไหม
+        intent: ask_time_open_close
+        entities:
+        - now: ตอนนี่
+        - open: เปิด
+      - action: action_handle_time_open_close
+  
+  - story: Respond with ask time close now
+    steps:
+      - user: |
+          [ตอนนี้](now)ห้องสมุด[ปิด](close)หรือยัง
+        intent: ask_time_open_close
+        entities:
+        - now: ตอนนี้
+        - close: ปิด
+      - action: action_handle_time_open_close
+  
+  - story: Respond with ask time open specific date
+    steps:
+      - user: |
+          [วันอังคาร](tuesday)ห้องสมุด[เปิด](open)กี่โมง
+        intent: ask_time_open_close
+        entities:
+        - tuesday: วันอังคาร
+        - open: เปิด
+      - action: action_handle_time_open_close
+  
+  - story: Respond with ask time close specific date
+    steps:
+      - user: |
+          [วันพฤหัส](thursday)ห้องสมุด[ปิด](close)ตอนไหนครับ
+        intent: ask_time_open_close
+        entities:
+        - thursday: วันพฤหัส
+        - close: ปิด
+      - action: action_handle_time_open_close
+
+  - story: Respond with tutor_available
+    steps:
+    - user: |
+        ห้องติวว่างอยู่ไหม
+      intent: tutor_available
+    - action: utter_tutor_available
+  
+  - story: Respond with tutor_step
+    steps:
+    - user: |
+        อยากรู้ว่าห้องติวจองยังไง
+      intent: tutor_step
+    - action: utter_tutor_step

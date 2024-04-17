@@ -11,24 +11,20 @@ assistant_id: 20240228-041249-friendly-import
 language: th
 
 pipeline:
-  - name: "custom.SpacyPythainlpTokenizer"
+  - name: "custom.ThaiTokenizer"
     intent_tokenization_flag: true
     intent_split_symbol: +
     token_pattern: None
   - name: "SpacyNLP"
     model: "xx_sent_ud_sm"
-  - name: "SpacyTokenizer"
-    intent_tokenization_flag: true
-    intent_split_symbol: +
-    token_pattern: None
   - name: "LanguageModelFeaturizer"
     model_name: "bert"
-    model_weights: "google-bert/bert-base-multilingual-uncased"
+    model_weights: "google-bert/bert-base-multilingual-cased"
   - name: "CountVectorsFeaturizer"
   - name: "CountVectorsFeaturizer"
     "analyzer": "word"
-    "min_ngram": 0
-    "max_ngram": 100
+    "min_ngram": 1
+    "max_ngram": 4
     "use_shared_vocab": true
   - name: "SklearnIntentClassifier"
     C: [1, 2, 5, 10, 20, 100]
@@ -39,10 +35,33 @@ pipeline:
     epochs: 100
     constrain_similarities: true
   - name: "RegexFeaturizer"
-  - name: "RegexEntityExtractor"
+  - name: "CRFEntityExtractor"
+    "BILOU_flag": True
+    "features": [
+      ["low", "title", "upper"],
+      [
+        "bias",
+        "low",
+        "prefix5",
+        "prefix2",
+        "suffix5",
+        "suffix3",
+        "suffix2",
+        "upper",
+        "title",
+        "digit",
+        "pattern",
+        "text_dense_features"
+      ],
+      ["low", "title", "upper"],
+    ]
+    "max_iterations": 50
+    "L1_c": 0.1
+    "L2_c": 0.1
+    "featurizers": []
   - name: "FallbackClassifier"
-    threshold: 0.5
-    fallback_action: action_default_fallback
+    threshold: 0.6
+    allback_action: action_default_fallback
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
@@ -50,7 +69,7 @@ policies:
   - name: MemoizationPolicy
     max_history: 10
   - name: RulePolicy
-    core_fallback_threshold: 0.5
+    core_fallback_threshold: 0.6
     core_fallback_action_name: action_default_fallback
     enable_fallback_prediction: true
   - name: UnexpecTEDIntentPolicy

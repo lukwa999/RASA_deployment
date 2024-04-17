@@ -12,11 +12,6 @@ rules:
       - intent: goodbye
       - action: utter_goodbye
 
-  - rule: Respond time
-    steps:
-      - intent: ask_time_open
-      - action: utter_time
-
   - rule: Fallback rule
     steps:
       - intent: nlu_fallback
@@ -24,19 +19,22 @@ rules:
     condition:
       - active_loop: null
 
-  - rule: Respond with greet and ask_time_open
+  - rule: Respond to user ask day open or close
     steps:
-      - intent: greet+ask_time
-      - action: utter_greet
-      - action: utter_time
+      - intent: ask_day_open_close
+      - action: action_handle_library_open_close
 
-  - rule: Respond with open date
+  - rule: Respond with ask_time_open_close
     steps:
-      - intent: ask_day_open
-      - action: action_handle_date
+      - intent: ask_time_open_close
+      - action: action_handle_time_open_close
   
-  - rule: Respond with close date
+  - rule: Respond with tutor_available
     steps:
-      - intent: ask_day_close
-      - action: action_handle_date
-
+      - intent: tutor_available
+      - action: utter_tutor_available
+  
+  - rule: Respond with tutor_step
+    steps:
+      - intent: tutor_step
+      - action: utter_tutor_step

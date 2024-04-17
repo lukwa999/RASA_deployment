@@ -34,32 +34,39 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.events import SlotSet
+from datetime import datetime, timedelta
+import pytz
 
 # Map the detected day ask_day_entities to their corresponding names
 day_name_mapping = {
-    "จัน": "monday",
-    "อังคาร": "tuesday",
-    "อังคาน": "tuesday",
-    "พุด": "wednesday",
-    "พุท": "wednesday",
-    "พุธ": "wednesday",
-    "พฤหัส": "thursday",
-    "ศุก": "friday",
-    "สุก": "friday",
-    "สุข": "friday",
-    "เสา": "saturday",
-    "อาทิต": "sunday",
-    "อาทิด": "sunday",
- # Add mappings for other days as needed
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
 }
 
-open_mappings = {
-    "เปิด": "open"
+open_mappings = {"open": "open"}
+
+close_mappings = {"close": "close"}
+
+today_mappings = {"today": "today"}
+
+now_mappings = {"now": "now"}
+
+thai_day_names = {
+    "Monday": "วันจันทร์",
+    "Tuesday": "วันอังคาร",
+    "Wednesday": "วันพุธ",
+    "Thursday": "วันพฤหัสบดี",
+    "Friday": "วันศุกร์",
+    "Saturday": "วันเสาร์",
+    "Sunday": "วันอาทิตย์",
 }
 
-close_mappings = {
-    "ปิด": "close"
-}
+
 class ActionDefaultFallback(Action):
     def name(self) -> Text:
         return "action_default_fallback"
@@ -90,7 +97,7 @@ class ActionDefaultFallback(Action):
 
 class ActionHandleDayOpen(Action):
     def name(self) -> Text:
-        return "action_handle_date"
+        return "action_handle_time_open_close"
 
     def run(
         self,
@@ -99,56 +106,168 @@ class ActionHandleDayOpen(Action):
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
 
-        # Extract ask_day_entities related to the ask_day_open slot from the user's message
-        ask_day_entities = tracker.latest_message.get("entities", [])
-        extract_entities = [entity["value"] for entity in ask_day_entities if entity["entity"]]
-        print("Detected day ask_day_entities:", extract_entities)
+        # Get the message from the ask_day_open slot
+        ask_day_message = tracker.get_slot("ask_time_open_close")
 
-        # Create a set of keys from day_name_mapping for faster lookup
-        day_name_mapping_keys = set(day_name_mapping.keys())
-        open_mappings_keys = set(open_mappings.keys())
-        close_mappings_keys = set(close_mappings.keys())
+        utc_plus_7 = pytz.timezone("Asia/Bangkok")
 
-        # Get the detected day entity
-        detected_day_entity = None
-        for day_entity in extract_entities:
-            if day_entity in day_name_mapping_keys:
-                detected_day_entity = day_name_mapping[day_entity]
-                break
-        
-        # Get the detected open entity
-        detected_open_entity = None
-        for open_entity in extract_entities:
-            if open_entity in open_mappings_keys:
-                detected_open_entity = open_mappings[open_entity]
-                break
+        # Get the current time in the UTC +7 timezone
+        current_time = datetime.now(utc_plus_7)
+
+        # Get the day of the week and translate it to Thai
+        current_day = current_time.strftime("%A")
+        current_day_thai = thai_day_names.get(current_day)
+
+        # Get the current hour
+        current_hour = current_time.hour
+
+        if ask_day_message:
+            # Extract ask_day_entities related to the ask_day_open slot from the user's message
+            ask_day_entities = tracker.latest_message.get("entities", [])
+            extract_entities = [
+                entity["entity"] for entity in ask_day_entities if entity.get("entity")
+            ]
+            print("Detected time entities :", extract_entities)
+
+            # Separate detected entities into different lists
+            detected_day_entities = []
+            detected_open_entities = []
+            detected_close_entities = []
+            detected_today_entities = []
+            detected_now_entities = []
+            for entity in extract_entities:
+                if entity in day_name_mapping:
+                    detected_day_entities.append(day_name_mapping[entity])
+                elif entity in open_mappings:
+                    detected_open_entities.append(entity)
+                elif entity in close_mappings:
+                    detected_close_entities.append(entity)
+                elif entity in today_mappings:
+                    detected_today_entities.append(entity)
+                elif entity in now_mappings:
+                    detected_now_entities.append(entity)
+
+            print(
+                "Detected time entities date:",
+                detected_day_entities,
+                "Detected time entities open:",
+                detected_open_entities,
+                "Detected time entities close:",
+                detected_close_entities,
+                "Detected time entities today:",
+                detected_today_entities,
+                "Detected time entities now:",
+                detected_now_entities,
+            )
             
-        # Get the detected open entity
-        detected_close_entity = None
-        for close_entity in extract_entities:
-            if close_entity in close_mappings_keys:
-                detected_close_entity = close_mappings[close_entity]
-                break
-            
-        print("Detected entity:", detected_day_entity , detected_open_entity, detected_close_entity)
+            # Handle detected entities based on mappings
+            if detected_now_entities and detected_open_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        if current_hour > 8 and current_hour < 20:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ"
+                        else:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                    else:  # It's Saturday
+                        if current_hour > 9 and current_hour < 18:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ"
+                        else:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_now_entities and detected_close_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        if current_hour > 8 and current_hour < 20:
+                            
+                            # Calculate remaining time until 8:00 PM
+                            closing_time = datetime(current_time.year, current_time.month, current_time.day, 20, 0, tzinfo=utc_plus_7)  # Set closing time to 8:00 PM
+                            remaining_time = closing_time - current_time
 
-        # Perform actions based on the detected day entity
-        if detected_day_entity == "sunday":
-            dispatcher.utter_message(response=f"utter_{detected_day_entity}")
-        elif detected_day_entity and detected_open_entity:
-            dispatcher.utter_message(response=f"utter_open_{detected_day_entity}")
-        elif (detected_day_entity != "sunday") and detected_close_entity:
-            dispatcher.utter_message(response=f"utter_open_{detected_day_entity}")
-        else:
-            dispatcher.utter_message("ขอโทษครับ ไม่มีข้อมูลสำหรับวันนั้น")
+                            # Convert remaining time to hours and minutes
+                            remaining_hours = remaining_time.seconds // 3600
+                            remaining_minutes = (remaining_time.seconds % 3600) // 60
+
+                            # Construct the response message
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ และเหลือเวลา {remaining_hours} ชั่วโมง {remaining_minutes} นาที ก่อนจะปิด"
+                        else:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                    else:  # It's Saturday
+                        if current_hour > 9 and current_hour < 18:
+                            
+                            # Calculate remaining time until 6:00 PM
+                            closing_time = datetime(current_time.year, current_time.month, current_time.day, 18, 0, tzinfo=utc_plus_7)  # Set closing time to 6:00 PM
+                            remaining_time = closing_time - current_time
+
+                            # Convert remaining time to hours and minutes
+                            remaining_hours = remaining_time.seconds // 3600
+                            remaining_minutes = (remaining_time.seconds % 3600) // 60
+
+                            # Construct the response message
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ และเหลือเวลา {remaining_hours} ชั่วโมง {remaining_minutes} นาที ก่อนจะปิด"
+                        else:
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_today_entities and detected_open_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
+                    else:  # It's Saturday
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_today_entities and detected_close_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
+                    else:  # It's Saturday
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 18:00 น ครับ"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_day_entities and detected_open_entities:
+                # Check if today is not Sunday
+                if "sunday" not in detected_day_entities:
+                    # Check if it's within opening hours
+                    if "saturday" not in detected_day_entities:
+                        thai_date = thai_day_names.get(detected_day_entities[0])
+                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
+                    else:  # It's Saturday
+                        thai_date = thai_day_names.get(detected_day_entities[0])
+                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
+                else:
+                    response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_day_entities and detected_close_entities:
+                # Check if today is not Sunday
+                if "sunday" not in detected_day_entities:
+                    # Check if it's within opening hours
+                    if "saturday" not in detected_day_entities:
+                        thai_date = thai_day_names.get(detected_day_entities[0])
+                        response = f"{thai_date} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
+                    else:  # It's Saturday
+                        thai_date = thai_day_names.get(detected_day_entities[0])
+                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 18:00 น ครับ"
+                else:
+                    response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            # Utter the response message
+            dispatcher.utter_message(response)
 
         # Reset the ask_day_open slot value
-        return [SlotSet("ask_day_open", None),SlotSet("ask_day_close", None)]
+        return [SlotSet("ask_time_open_close", None)]
 
 
-class ActionHandleTimeOpen(Action):
+
+class ActionHandleLibraryStatus(Action):
     def name(self) -> Text:
-        return "action_handle_time"
+        return "action_handle_library_open_close"
 
     def run(
         self,
@@ -156,36 +275,91 @@ class ActionHandleTimeOpen(Action):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> List[Dict[Text, Any]]:
-        # Access the value of the detected entity
-        detected_entity_value = tracker.get_slot("ask_time_open")
-        print(detected_entity_value)
-        # Map the detected entity value to its corresponding name
-        entity_name_mapping = {
-            "จัน": "monday",
-            "อังคาร": "tuesday",
-            "อังคาน": "tuesday",
-            "พุด": "wednesday",
-            "พุท": "wednesday",
-            "พุธ": "wednesday",
-            "พฤหัส": "thursday",
-            "ศุก": "friday",
-            "สุก": "friday",
-            "สุข": "friday",
-            "เสา": "saturday",
-            "อาทิต": "sunday",
-            "อาทิด": "sunday"
-        }
-    
-        # Get the entity name from the mapping
-        detected_entity_name = entity_name_mapping.get(detected_entity_value)
-        print(detected_entity_name)
-        # Perform actions based on the detected entity name
-        if detected_entity_name in ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]:
-            dispatcher.utter_message(response=f"utter_time_{detected_entity_name}")
-        elif detected_entity_name == "sunday":
-            dispatcher.utter_message(response=f"utter_{detected_entity_name}")
-        else:
-            dispatcher.utter_message("ขอโทษครับ ไม่มีข้อมูลสำหรับวันนั้น")
+        # Define the UTC +7 timezone
+        utc_plus_7 = pytz.timezone("Asia/Bangkok")
 
-        return []
-    
+        # Get the current time in the UTC +7 timezone
+        current_time = datetime.now(utc_plus_7)
+
+        # Get the day of the week and translate it to Thai
+        current_day = current_time.strftime("%A")
+        current_day_thai = thai_day_names.get(current_day)
+
+        # Get the message from the ask_day_open_close slot
+        ask_day_message = tracker.get_slot("ask_day_open_close")
+
+        if ask_day_message:
+            # Extract ask_day_entities related to the ask_day_open slot from the user's message
+            ask_day_entities = tracker.latest_message.get("entities", [])
+            extract_entities = [
+                entity["entity"] for entity in ask_day_entities if entity.get("entity")
+            ]
+            print("Detected day entities open:", extract_entities)
+
+            # Separate detected entities into different lists
+            detected_day_entities = []
+            detected_open_entities = []
+            detected_close_entities = []
+            detected_today_entities = []
+            for entity in extract_entities:
+                if entity in day_name_mapping:
+                    detected_day_entities.append(day_name_mapping[entity])
+                elif entity in open_mappings:
+                    detected_open_entities.append(entity)
+                elif entity in close_mappings:
+                    detected_close_entities.append(entity)
+                elif entity in today_mappings:
+                    detected_today_entities.append(entity)
+
+            print(
+                "Detected day entities date:",
+                detected_day_entities,
+                "Detected day entities open:",
+                detected_open_entities,
+                "Detected day entities close:",
+                detected_close_entities,
+                "Detected today entities",
+                detected_today_entities,
+            )
+
+            # Debugging: Print the value of current_day_thai
+            print("Current day in Thai:", current_day_thai)
+
+            # Check if today is Sunday
+            if current_day.lower() == "sunday":
+                response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
+            # Check if today is not Sunday and both "today" and "close" entities are detected
+            elif (
+                current_day.lower() != "sunday"
+                and "today" in detected_today_entities
+                and "close" in detected_close_entities
+            ):
+                response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดครับ"
+            # Check if today is not Sunday and both "today" and "open" entities are detected
+            elif (
+                current_day.lower() != "sunday"
+                and "today" in detected_today_entities
+                and "open" in detected_open_entities
+            ):
+                response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
+            elif "sunday" in detected_day_entities:
+                response = f"วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_day_entities and detected_close_entities:
+                thai_date = thai_day_names.get(detected_day_entities[0])
+                response = f"{thai_date} ห้องสมุดไม่ปิดครับ"
+            elif detected_day_entities and detected_open_entities:
+                thai_date = thai_day_names.get(detected_day_entities[0])
+                print(thai_date, detected_day_entities[0])
+                response = f"{thai_date} ห้องสมุดเปิดให้บริการครับ"
+            elif detected_open_entities and current_day.lower() != "sunday":
+                response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
+            elif detected_close_entities and current_day.lower() != "sunday":
+                response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดครับ"
+            elif (
+                detected_open_entities or detected_close_entities
+            ) and current_day.lower() == "sunday":
+                response = f"วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+
+            dispatcher.utter_message(response)
+
+        return [SlotSet("ask_day_open_close", None)]

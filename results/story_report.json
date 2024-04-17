@@ -1,71 +1,53 @@
 {
-  "action_listen": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 13
-  },
-  "utter_goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "ask_time_open": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "nlu_fallback": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
   "goodbye": {
     "precision": 1.0,
-    "recall": 0.3333333333333333,
-    "f1-score": 0.5,
+    "recall": 0.6666666666666666,
+    "f1-score": 0.8,
     "support": 3
   },
-  "ask_day_close": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "utter_time": {
+  "ask_day_open_close": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 2
+    "support": 3
+  },
+  "utter_tutor_available": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
   },
   "utter_greet": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5
+    "support": 3
   },
-  "greet+ask_time": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
+  "nlu_fallback": {
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1-score": 0.6666666666666666,
     "support": 1
   },
-  "None": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 13
-  },
-  "greet": {
-    "precision": 0.8,
+  "utter_tutor_step": {
+    "precision": 1.0,
     "recall": 1.0,
-    "f1-score": 0.888888888888889,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[ปิด](close)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "action_handle_time_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
     "support": 4
   },
-  "action_handle_date": {
+  "utter_goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -77,35 +59,113 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "ask_day_open": {
-    "precision": 0.2857142857142857,
+  "[วันอังคาร](tuesday)": {
+    "precision": 1.0,
     "recall": 1.0,
-    "f1-score": 0.4444444444444445,
-    "support": 2
+    "f1-score": 1.0,
+    "support": 1
   },
-  "micro avg": {
-    "precision": 0.85,
-    "recall": 0.6415094339622641,
-    "f1-score": 0.7311827956989247,
-    "support": 53
+  "action_listen": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 16
   },
+  "ask_time_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "[พฤหัส](thursday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "action_handle_library_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[ตอนนี้](now)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันอาทิต](sunday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "tutor_available": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันพฤหัส](thursday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[ตอนนี่](now)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันจันทร์](monday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "tutor_step": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[เปิด](open)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "accuracy": 0.9838709677419355,
   "macro avg": {
-    "precision": 0.5775510204081632,
-    "recall": 0.5952380952380952,
-    "f1-score": 0.5595238095238095,
-    "support": 53
+    "precision": 0.9791666666666666,
+    "recall": 0.986111111111111,
+    "f1-score": 0.9777777777777779,
+    "support": 62
   },
   "weighted avg": {
-    "precision": 0.6371967654986523,
-    "recall": 0.6415094339622641,
-    "f1-score": 0.6215932914046122,
-    "support": 53
+    "precision": 0.9919354838709677,
+    "recall": 0.9838709677419355,
+    "f1-score": 0.9849462365591397,
+    "support": 62
   },
-  "accuracy": 0.6415094339622641,
+  "micro avg": {
+    "precision": 0.9838709677419355,
+    "recall": 0.9838709677419355,
+    "f1-score": 0.9838709677419355,
+    "support": 62
+  },
   "conversation_accuracy": {
-    "accuracy": 0.14285714285714285,
-    "correct": 1,
+    "accuracy": 0.9090909090909091,
+    "correct": 10,
     "with_warnings": 0,
-    "total": 7
+    "total": 11
   }
 }

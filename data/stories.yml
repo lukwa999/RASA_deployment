@@ -12,17 +12,6 @@ stories:
       - intent: goodbye
       - action: utter_goodbye
 
-  - story: User asks for the time
-    steps:
-      - intent: ask_time_open
-      - action: utter_time
-
-  - story: User combined greet and ask_time_open
-    steps:
-      - intent: greet+ask_time
-      - action: utter_greet
-      - action: utter_time
-
   - story: Fallback scenario
     steps:
       - intent: nlu_fallback
@@ -30,22 +19,17 @@ stories:
 
   - story: Respond with open date
     steps:
-      - intent: ask_day_open
-      - action: action_handle_date
-
-  - story: Respond with close date
-    steps:
-      - intent: ask_day_close
-      - action: action_handle_date
+      - intent: ask_day_open_close
+      - action: action_handle_library_open_close
 
   - story: Respond with open date and greeting
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_day_open
+      - intent: ask_day_open_close
         entities:
-          - date: พฤหัสบดี
-      - action: action_handle_date
+          - open: เปิด
+      - action: action_handle_library_open_close
       - intent: goodbye
       - action: utter_goodbye
 
@@ -53,9 +37,9 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_day_close
+      - intent: ask_day_open_close
         entities:
-          - date: จัน
-      - action: action_handle_date
+          - close: ปิด
+      - action: action_handle_library_open_close
       - intent: goodbye
       - action: utter_goodbye

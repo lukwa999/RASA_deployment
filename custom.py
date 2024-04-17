@@ -1,87 +1,62 @@
-from typing import Optional, Dict, Text, Any, List
-from rasa.engine.graph import ExecutionContext, GraphComponentException
+from __future__ import annotations
+from typing import Any, Dict, List, Text
+
+from pythainlp import word_tokenize
+from rasa.engine.graph import ExecutionContext
 from rasa.engine.recipes.default_recipe import DefaultV1Recipe
 from rasa.engine.storage.resource import Resource
 from rasa.engine.storage.storage import ModelStorage
-from rasa.engine.graph import GraphComponent
-from rasa.shared.nlu.constants import TEXT_TOKENS
+from rasa.nlu.tokenizers.tokenizer import Token, Tokenizer
 from rasa.shared.nlu.training_data.message import Message
-from rasa.shared.nlu.training_data.training_data import TrainingData
-import spacy
-import spacy_pythainlp.core
+
 
 @DefaultV1Recipe.register(
-    [DefaultV1Recipe.ComponentType.MESSAGE_TOKENIZER], is_trainable=False
+    DefaultV1Recipe.ComponentType.MESSAGE_TOKENIZER, is_trainable=False
 )
-class SpacyPythainlpTokenizer(GraphComponent):
-    def __init__(
-        self,
-        config: Optional[Dict[Text, Any]] = None,
-        model_storage: Optional[ModelStorage] = None,
-        resource: Optional[Resource] = None,
-        execution_context: Optional[ExecutionContext] = None,
-    ) -> None:
-        try:
-            # Initialize spaCy with PyThaiNLP
-            self.nlp = spacy.blank("th")
-            self.nlp.add_pipe("pythainlp")
-        except Exception as e:
-            raise GraphComponentException(f"Error initializing SpacyPythainlpTokenizer: {str(e)}")
+class ThaiTokenizer(Tokenizer):
+    """Creates features for entity extraction."""
+
+    @staticmethod
+    def required_packages() -> List[Text]:
+        """Any extra python dependencies required for this component to run."""
+        return ["spacy"]
+
+    @staticmethod
+    def get_default_config() -> Dict[Text, Any]:
+        """Returns the component's default config."""
+        return {
+            # This *must* be added due to the parent class.
+            "intent_tokenization_flag": False,
+            # This *must* be added due to the parent class.
+            "intent_split_symbol": "_",
+            # This is the spaCy language setting.
+            "case_sensitive": True,
+        }
+
+    def __init__(self, config: Dict[Text, Any]) -> None:
+        """Initialize the tokenizer."""
+        config = {**self.get_default_config(), **config}
+        super().__init__(config)
+        self.case_sensitive = config["case_sensitive"]
 
     @classmethod
     def create(
-        cls,
-        config: Optional[Dict[Text, Any]],
-        model_storage: Optional[ModelStorage],
-        resource: Optional[Resource],
-        execution_context: Optional[ExecutionContext],
-    ) -> GraphComponent:
-        return cls(config, model_storage, resource, execution_context)
-
-    def train(self, training_data: TrainingData) -> Resource:
-        # Implement the training logic if needed
-        pass
-
-    def process(self, messages: List[Message]) -> List[Message]:
-        for message in messages:
-            try:
-                doc = self.nlp(message.get("text"))
-                tokens = [
-                    {
-                        "text": token.text,
-                        "start": token.idx,
-                        "end": token.idx + len(token),
-                        "lemma": token.lemma_,
-                        "pos": token.pos_,
-                        "entity_type": token.ent_type_,
-                    }
-                    for token in doc
-                ]   
-                message.set(TEXT_TOKENS, tokens)
-            except Exception as e:
-                raise GraphComponentException(f"Error processing message: {str(e)}")
-
-        return messages
-
-    def process_training_data(self, training_data: TrainingData) -> TrainingData:
-        # Implement the logic to process training data if needed
-        # This method is required for message tokenizers
-        return training_data
-
-    def persist(self, file_name: str, model_dir: str) -> Optional[Dict[Text, Any]]:
-        # Implement model persistence logic if needed
-        pass
-
-    @classmethod
-    def load(
         cls,
         config: Dict[Text, Any],
         model_storage: ModelStorage,
         resource: Resource,
         execution_context: ExecutionContext,
-        **kwargs: Any,
-    ) -> "SpacyPythainlpTokenizer":
-        try:
-            return cls(config, model_storage, resource, execution_context)
-        except Exception as e:
-            raise GraphComponentException(f"Error loading SpacyPythainlpTokenizer: {str(e)}")
+    ) -> ThaiTokenizer:
+        return cls(config)
+
+    def tokenize(self, message: Message, attribute: Text) -> List[Token]:
+        """Tokenizes the text of the provided message."""
+        text = message.get(attribute)
+
+        # Preserve whitespace when tokenizing
+        words = word_tokenize(text, engine="newmm", keep_whitespace=True)
+
+        if not words:
+            words = [text]
+
+        return self._convert_words_to_tokens(words, text)
