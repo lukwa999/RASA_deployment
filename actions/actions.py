@@ -257,8 +257,28 @@ class ActionHandleDayOpen(Action):
                         response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 18:00 น ครับ"
                 else:
                     response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_open_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
+                    else:  # It's Saturday
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            elif detected_close_entities:
+                # Check if today is not Sunday
+                if current_day != "Sunday":
+                    # Check if it's within opening hours
+                    if current_day != "Saturday":
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
+                    else:  # It's Saturday
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 18:00 น ครับ"
+                else:
+                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             # Utter the response message
-            dispatcher.utter_message(response)
+        dispatcher.utter_message(response)
 
         # Reset the ask_day_open slot value
         return [SlotSet("ask_time_open_close", None)]
