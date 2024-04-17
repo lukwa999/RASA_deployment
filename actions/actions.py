@@ -235,7 +235,7 @@ class ActionHandleDayOpen(Action):
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_day_entities and detected_open_entities:
                 # Check if today is not Sunday
-                if "sunday" not in detected_day_entities:
+                if "Sunday" not in detected_day_entities:
                     # Check if it's within opening hours
                     if "saturday" not in detected_day_entities:
                         thai_date = thai_day_names.get(detected_day_entities[0])
@@ -247,7 +247,7 @@ class ActionHandleDayOpen(Action):
                     response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_day_entities and detected_close_entities:
                 # Check if today is not Sunday
-                if "sunday" not in detected_day_entities:
+                if "Sunday" not in detected_day_entities:
                     # Check if it's within opening hours
                     if "saturday" not in detected_day_entities:
                         thai_date = thai_day_names.get(detected_day_entities[0])
