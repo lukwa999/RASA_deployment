@@ -1,4 +1,11 @@
 {
+  "proxy_step": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 34,
+    "confused_with": {}
+  },
   "goodbye": {
     "precision": 1.0,
     "recall": 1.0,
@@ -6,28 +13,14 @@
     "support": 23,
     "confused_with": {}
   },
-  "ask_time_open_close": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 40,
-    "confused_with": {}
-  },
-  "ask_day_open_close": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 42,
-    "confused_with": {}
-  },
-  "tutor_step": {
+  "ask_proxy": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 34,
     "confused_with": {}
   },
-  "greet": {
+  "renew_book": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -38,7 +31,35 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 25,
+    "support": 28,
+    "confused_with": {}
+  },
+  "ask_time_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 42,
+    "confused_with": {}
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 49,
+    "confused_with": {}
+  },
+  "tutor_step": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 37,
+    "confused_with": {}
+  },
+  "ask_day_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 42,
     "confused_with": {}
   },
   "accuracy": 1.0,
@@ -46,18 +67,18 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 211
+    "support": 336
   },
   "weighted avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 211
+    "support": 336
   },
   "micro avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 211
+    "support": 336
   }
 }

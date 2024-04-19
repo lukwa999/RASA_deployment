@@ -56,14 +56,14 @@ stories:
         intent: greet
       - action: utter_greet
       - user: |
-          วัน[พฤหัส](thursday)ห้องสมุด[ปิด](close)มั้ยค่ะ
+          [พฤหัส](thursday)ห้องสมุด[ปิด](close)มั้ยค่ะ
         intent: ask_day_open_close
         entities:
           - thursday: พฤหัส
           - close: ปิด
       - action: action_handle_library_open_close
       - user: |
-          ขอบใจมาก
+          ขอบคุณครับ
         intent: goodbye
       - action: utter_goodbye
   
@@ -120,3 +120,21 @@ stories:
         อยากรู้ว่าห้องติวจองยังไง
       intent: tutor_step
     - action: utter_tutor_step
+
+  - story: Respond with renew_book
+    steps:
+    - user: |
+        อยากจะยืมหนังสือที่มีอยู่ต่อต้องทำยังไง
+      intent: renew_book
+    - action: utter_renew_book
+
+  - story: Respond with cancel_book
+    steps:
+    - user: |
+        อยากจะโหลดบทความจากที่บ้านไม่ต้องไปมหาลัยทำได้ไหม
+      intent: ask_proxy
+    - action: utter_ask_proxy
+    - user: |
+        แล้วจะใช้งานproxyได้่ไง
+      intent: proxy_step
+    - action: utter_proxy_step

@@ -38,3 +38,18 @@ rules:
     steps:
       - intent: tutor_step
       - action: utter_tutor_step
+  
+  - rule: Respond with renew_book
+    steps:
+      - intent: renew_book
+      - action: utter_renew_book
+  
+  - rule: Respond with proxy_step
+    steps:
+      - intent: proxy_step
+      - action: utter_proxy_step
+  
+  - rule: Respond with ask_proxy
+    steps:
+      - intent: ask_proxy
+      - action: utter_ask_proxy

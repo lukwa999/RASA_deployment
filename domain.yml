@@ -9,6 +9,9 @@ intents:
     use_entities: []
 - ask_time_open_close:
     use_entities: []
+- renew_book
+- ask_proxy
+- proxy_step
 
 entities:
  - today
@@ -81,8 +84,6 @@ responses:
   - text: สวัสดีครับ มีอะไรให้ช่วยครับ
   utter_goodbye:
   - text: ลาก่อนครับ หากมีคำถามเพิ่มเติม ติดต่อเราได้เสมอครับ
-  utter_time:
-  - text: วันนี้ห้องสมุดเปิดตั้งเวลา 8:00 น. - 20:00 น. ครับ ถ้าเป็นวันจันทร์ถึงศุกร์ ส่วนวันเสาร์เปิดเวลา 9:00 น. - 18:00 น ครับ
   utter_blank:
   - text: กรุณาใส่ข้อความเพื่อถามเรา
   utter_fallback:
@@ -90,7 +91,27 @@ responses:
   utter_tutor_available:
   - text: สามารถตรวจเช็คได้ที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้วสามารถดูได้เลยวิทยาเขตของท่านยังว่างอยู่หรือไม่
   utter_tutor_step:
-  - text: สามารถตรวจเช็คได้ที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้ว ทำการกดไปที่ booking ในวิทยาเขตที่ท่านต้องการ แล้ว login ด้วยรหัส icit ได้เลย
+  - text: ทำการเข้าไปที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้ว ทำการกดไปที่ booking ในวิทยาเขตที่ท่านต้องการ แล้ว login ด้วยรหัส icit ได้เลย
+  utter_renew_book:
+  - text: |
+      หากอยากยืมหนังสือ หรือ renew หนังสือให้ทำตามขั้นตอนตามนี้ได้เลยครับ
+      1). เข้าไปที่ https://library.kmutnb.ac.th/th/ 
+      2). และไปที่เมนูทางด้านขวามือที่มีข้อความว่า "ยืมต่อ จองหนังสือด้วยตนเอง" 
+          ทำการ login ด้วย ชื่อ-นามสกุล รหัสนักศึกษาหรือบัตรห้องสมุด และคลิก"ตกลง" 
+      3). หลังจากนั้นจะเข้าสู่หน้าจอเฉพาะคนที่จะปรากฏรายการหนังสือที่ยืมมาทั้งหมด
+      4). ทำการใส่เครื่องหมาย "ถูก" ในรายการหนังสือที่ต้องการยืมต่อแล้วทำการกด Renew Selected
+           แต่ถ้าหากต้องการยืมต่อทั้งหมดทำการการกด Renew All
+      5). และทำการยืนยันการดำเนินการต่ออายุด้วยการคลิก "YES"
+      6). หลังจากนั้นระบบจะทำการ Renew กำนหนดวันส่งคืนให้อัตโนมัติและแสดงจำนวนครั้งที่ Renew ด้วยอักษรสีแดงพร้อมกำหนดวันส่งใหม่
+      Note : หากสงสัยในขั้นตอนสามารถดู Video แนะนำได้ที่ https://www.youtube.com/watch?v=miL_YiTWDFU
+  utter_proxy_step:
+  - text: |
+      การตั้งค่า proxy ขึ้นอยู่กับระบบปฏิบัติการของท่านมี 3 รูปแบบตามนี้
+      1. Windows PC : https://sites.google.com/lib.kmutnb.ac.th/proxy-server-manual/manual/windows-pc?authuser=0
+      2. Mac OS : https://sites.google.com/lib.kmutnb.ac.th/proxy-server-manual/manual/mac-pc?authuser=0
+      3. Tablet & Smartphone : https://sites.google.com/lib.kmutnb.ac.th/proxy-server-manual/manual/tablet-smartphone?authuser=0
+  utter_ask_proxy:
+  - text: สามารถทำได้โดยการตั้งค่า proxy ครับ
 
 actions:
 - action_default_fallback

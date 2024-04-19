@@ -19,7 +19,7 @@ pipeline:
     model: "xx_sent_ud_sm"
   - name: "LanguageModelFeaturizer"
     model_name: "bert"
-    model_weights: "google-bert/bert-base-multilingual-cased"
+    model_weights: "google-bert/bert-base-multilingual-uncased"
   - name: "CountVectorsFeaturizer"
   - name: "CountVectorsFeaturizer"
     "analyzer": "word"
@@ -60,7 +60,7 @@ pipeline:
     "L2_c": 0.1
     "featurizers": []
   - name: "FallbackClassifier"
-    threshold: 0.6
+    threshold: 0.7
     allback_action: action_default_fallback
 
 # Configuration for Rasa Core.
@@ -69,7 +69,7 @@ policies:
   - name: MemoizationPolicy
     max_history: 10
   - name: RulePolicy
-    core_fallback_threshold: 0.6
+    core_fallback_threshold: 0.7
     core_fallback_action_name: action_default_fallback
     enable_fallback_prediction: true
   - name: UnexpecTEDIntentPolicy

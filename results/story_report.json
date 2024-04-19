@@ -1,23 +1,77 @@
 {
-  "goodbye": {
-    "precision": 1.0,
-    "recall": 0.6666666666666666,
-    "f1-score": 0.8,
-    "support": 3
-  },
-  "ask_day_open_close": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "utter_tutor_available": {
+  "utter_tutor_step": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "utter_greet": {
+  "utter_renew_book": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "tutor_available": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "action_listen": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 19
+  },
+  "utter_ask_proxy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "action_handle_library_open_close": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "action_default_fallback": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[ตอนนี่](now)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "ask_time_open_close": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1-score": 0.8571428571428571,
+    "support": 4
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "[วันพฤหัส](thursday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[พฤหัส](thursday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "utter_goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -29,7 +83,37 @@
     "f1-score": 0.6666666666666666,
     "support": 1
   },
-  "utter_tutor_step": {
+  "[เปิด](open)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4
+  },
+  "goodbye": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "ask_proxy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันจันทร์](monday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันอังคาร](tuesday)": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "[วันอาทิต](sunday)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -47,43 +131,7 @@
     "f1-score": 1.0,
     "support": 4
   },
-  "utter_goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "action_default_fallback": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "[วันอังคาร](tuesday)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_listen": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 16
-  },
-  "ask_time_open_close": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "[พฤหัส](thursday)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "action_handle_library_open_close": {
+  "ask_day_open_close": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -95,31 +143,31 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "[วันอาทิต](sunday)": {
+  "utter_proxy_step": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "tutor_available": {
+  "utter_greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3
+  },
+  "renew_book": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "[วันพฤหัส](thursday)": {
+  "proxy_step": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "[ตอนนี่](now)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "[วันจันทร์](monday)": {
+  "utter_tutor_available": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -131,41 +179,29 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3
-  },
-  "[เปิด](open)": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4
-  },
-  "accuracy": 0.9838709677419355,
+  "accuracy": 0.9859154929577465,
   "macro avg": {
-    "precision": 0.9791666666666666,
-    "recall": 0.986111111111111,
-    "f1-score": 0.9777777777777779,
-    "support": 62
+    "precision": 0.9833333333333333,
+    "recall": 0.9916666666666667,
+    "f1-score": 0.9841269841269842,
+    "support": 71
   },
   "weighted avg": {
-    "precision": 0.9919354838709677,
-    "recall": 0.9838709677419355,
-    "f1-score": 0.9849462365591397,
-    "support": 62
+    "precision": 0.9929577464788732,
+    "recall": 0.9859154929577465,
+    "f1-score": 0.9872568745808183,
+    "support": 71
   },
   "micro avg": {
-    "precision": 0.9838709677419355,
-    "recall": 0.9838709677419355,
-    "f1-score": 0.9838709677419355,
-    "support": 62
+    "precision": 0.9859154929577465,
+    "recall": 0.9859154929577465,
+    "f1-score": 0.9859154929577465,
+    "support": 71
   },
   "conversation_accuracy": {
-    "accuracy": 0.9090909090909091,
-    "correct": 10,
+    "accuracy": 0.9230769230769231,
+    "correct": 12,
     "with_warnings": 0,
-    "total": 11
+    "total": 13
   }
 }
