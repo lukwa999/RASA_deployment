@@ -90,10 +90,10 @@ stories:
   - story: Respond with ask time open specific date
     steps:
       - user: |
-          [วันอังคาร](tuesday)ห้องสมุด[เปิด](open)กี่โมง
+          [อังคาร](tuesday)ห้องสมุด[เปิด](open)กี่โมง
         intent: ask_time_open_close
         entities:
-        - tuesday: วันอังคาร
+        - tuesday: อังคาร
         - open: เปิด
       - action: action_handle_time_open_close
   
@@ -138,3 +138,9 @@ stories:
         แล้วจะใช้งานproxyได้่ไง
       intent: proxy_step
     - action: utter_proxy_step
+  - story: Respond with everyday_open_everyday_close
+    steps:
+    - user: |
+        อยากจะรู้ว่สห้องสมุดเปิดวันไหนบ้างนะ
+      intent: everyday_open_everyday_close
+    - action: utter_everyday_open_everyday_close

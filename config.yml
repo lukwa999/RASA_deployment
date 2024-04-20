@@ -38,7 +38,6 @@ pipeline:
   - name: "CRFEntityExtractor"
     "BILOU_flag": True
     "features": [
-      ["low", "title", "upper"],
       [
         "bias",
         "low",
@@ -53,23 +52,22 @@ pipeline:
         "pattern",
         "text_dense_features"
       ],
-      ["low", "title", "upper"],
     ]
-    "max_iterations": 50
-    "L1_c": 0.1
+    "max_iterations": 70
+    "L1_c": 0.2
     "L2_c": 0.1
     "featurizers": []
   - name: "FallbackClassifier"
-    threshold: 0.7
+    threshold: 0.6
     allback_action: action_default_fallback
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
   - name: MemoizationPolicy
-    max_history: 10
+    max_history: 20
   - name: RulePolicy
-    core_fallback_threshold: 0.7
+    core_fallback_threshold: 0.6
     core_fallback_action_name: action_default_fallback
     enable_fallback_prediction: true
   - name: UnexpecTEDIntentPolicy

@@ -213,68 +213,33 @@ class ActionHandleDayOpen(Action):
                             response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_today_entities and detected_open_entities:
-                # Check if today is not Sunday
-                if current_day != "Sunday":
-                    # Check if it's within opening hours
-                    if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
-                    else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
-                else:
-                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_today_entities and detected_close_entities:
-                # Check if today is not Sunday
-                if current_day != "Sunday":
-                    # Check if it's within opening hours
-                    if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
-                    else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 18:00 น ครับ"
-                else:
-                    response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_day_entities and detected_open_entities:
-                # Check if today is not Sunday
+            elif detected_day_entities and (detected_open_entities or detected_close_entities):
+                day_thai = thai_day_names.get(detected_day_entities[0])
                 if "Sunday" not in detected_day_entities:
-                    # Check if it's within opening hours
-                    if "saturday" not in detected_day_entities:
-                        thai_date = thai_day_names.get(detected_day_entities[0])
-                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
-                    else:  # It's Saturday
-                        thai_date = thai_day_names.get(detected_day_entities[0])
-                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
+                    if "Saturday" not in detected_day_entities:
+                        response = f"วัน {day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
+                    else : #Saturday
+                        response = f"วัน {day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
                 else:
                     response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_day_entities and detected_close_entities:
-                # Check if today is not Sunday
-                if "Sunday" not in detected_day_entities:
-                    # Check if it's within opening hours
-                    if "saturday" not in detected_day_entities:
-                        thai_date = thai_day_names.get(detected_day_entities[0])
-                        response = f"{thai_date} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
-                    else:  # It's Saturday
-                        thai_date = thai_day_names.get(detected_day_entities[0])
-                        response = f"{thai_date} ห้องสมุดเปิดทำการเวลา 18:00 น ครับ"
-                else:
-                    response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_open_entities:
+            elif detected_today_entities and (detected_open_entities or detected_close_entities):
                 # Check if today is not Sunday
                 if current_day != "Sunday":
                     # Check if it's within opening hours
                     if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
                     else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
-            elif detected_close_entities:
+            elif detected_open_entities or detected_close_entities:
                 # Check if today is not Sunday
                 if current_day != "Sunday":
                     # Check if it's within opening hours
                     if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 20:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
                     else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการเวลา 18:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             # Utter the response message
@@ -362,7 +327,7 @@ class ActionHandleLibraryStatus(Action):
                 and "open" in detected_open_entities
             ):
                 response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
-            elif "sunday" in detected_day_entities:
+            elif "Sunday" in detected_day_entities:
                 response = f"วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_day_entities and detected_close_entities:
                 thai_date = thai_day_names.get(detected_day_entities[0])

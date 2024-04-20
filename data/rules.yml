@@ -53,3 +53,8 @@ rules:
     steps:
       - intent: ask_proxy
       - action: utter_ask_proxy
+
+  - rule: Respond with everyday_open_everyday_close
+    steps:
+      - intent: everyday_open_everyday_close
+      - action: utter_everyday_open_everyday_close

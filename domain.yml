@@ -12,6 +12,8 @@ intents:
 - renew_book
 - ask_proxy
 - proxy_step
+- everyday_open_everyday_close:
+    use_entities: []
 
 entities:
  - today
@@ -78,6 +80,15 @@ slots:
       entity: today
     - type: from_entity
       entity: now
+  
+  everyday_open_everyday_close:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: open
+    - type: from_entity
+      entity: close
       
 responses:
   utter_greet:
@@ -94,7 +105,7 @@ responses:
   - text: ทำการเข้าไปที่ https://smartroom.lib.kmutnb.ac.th/select/ แล้ว ทำการกดไปที่ booking ในวิทยาเขตที่ท่านต้องการ แล้ว login ด้วยรหัส icit ได้เลย
   utter_renew_book:
   - text: |
-      หากอยากยืมหนังสือ หรือ renew หนังสือให้ทำตามขั้นตอนตามนี้ได้เลยครับ
+      หากอยากยืมหนังสือต่อ หรือ renew หนังสือให้ทำตามขั้นตอนตามนี้ได้เลยครับ
       1). เข้าไปที่ https://library.kmutnb.ac.th/th/ 
       2). และไปที่เมนูทางด้านขวามือที่มีข้อความว่า "ยืมต่อ จองหนังสือด้วยตนเอง" 
           ทำการ login ด้วย ชื่อ-นามสกุล รหัสนักศึกษาหรือบัตรห้องสมุด และคลิก"ตกลง" 
@@ -112,7 +123,8 @@ responses:
       3. Tablet & Smartphone : https://sites.google.com/lib.kmutnb.ac.th/proxy-server-manual/manual/tablet-smartphone?authuser=0
   utter_ask_proxy:
   - text: สามารถทำได้โดยการตั้งค่า proxy ครับ
-
+  utter_everyday_open_everyday_close:
+  - text: ห้องสมุดเปิดทุกวัน จันทร์ - เสาร์ และหยุดทุก วันอาทิตย์ และ วันหยุดนักขัตฤกษ์
 actions:
 - action_default_fallback
 - action_handle_library_open_close

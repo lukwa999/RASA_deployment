@@ -1,13 +1,6 @@
 version: "3.1"
 stories:
-- story: Respond with ask time close specific date (.\tests\test_stories.yml)
+- story: Respond with everyday_open_everyday_close (.\tests\test_stories.yml)
   steps:
-  - intent: ask_time_open_close  # predicted: nlu_fallback: [วันพฤหัส](thursday)ห้องสมุด[ปิด](close)ตอนไหนครับ
-    entities:
-    - thursday: วันพฤหัส
-    - close: ปิด
-  - slot_was_set:
-    - ask_day_open_close: ปิด
-  - slot_was_set:
-    - ask_time_open_close: ปิด
-  - action: action_handle_time_open_close
+  - intent: everyday_open_everyday_close  # predicted: everyday_open_everyday_close: อยากจะรู้ว่สห้องสมุด[เปิด](open)วันไหนบ้างนะ
+  - action: utter_everyday_open_everyday_close
