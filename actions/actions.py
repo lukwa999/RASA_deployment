@@ -310,40 +310,38 @@ class ActionHandleLibraryStatus(Action):
             # Debugging: Print the value of current_day_thai
             print("Current day in Thai:", current_day_thai)
 
-            # Check if today is Sunday
-            if current_day.lower() == "sunday":
-                response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
-            # Check if today is not Sunday and both "today" and "close" entities are detected
-            elif (
-                current_day.lower() != "sunday"
-                and "today" in detected_today_entities
-                and "close" in detected_close_entities
-            ):
-                response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดครับ"
-            # Check if today is not Sunday and both "today" and "open" entities are detected
-            elif (
-                current_day.lower() != "sunday"
-                and "today" in detected_today_entities
-                and "open" in detected_open_entities
-            ):
-                response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
-            elif "Sunday" in detected_day_entities:
-                response = f"วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+            if detected_day_entities and detected_open_entities:
+                thai_date = thai_day_names.get(detected_day_entities[0])
+                if "Sunday" not in detected_day_entities:
+                    response = f"{thai_date} ห้องสมุดเปิดให้บริการครับ"
+                else:
+                    response = f"{thai_date} ห้องสมุดปิดให้บริการครับ"
             elif detected_day_entities and detected_close_entities:
                 thai_date = thai_day_names.get(detected_day_entities[0])
-                response = f"{thai_date} ห้องสมุดไม่ปิดครับ"
-            elif detected_day_entities and detected_open_entities:
-                thai_date = thai_day_names.get(detected_day_entities[0])
-                print(thai_date, detected_day_entities[0])
-                response = f"{thai_date} ห้องสมุดเปิดให้บริการครับ"
-            elif detected_open_entities and current_day.lower() != "sunday":
-                response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
-            elif detected_close_entities and current_day.lower() != "sunday":
-                response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดครับ"
-            elif (
-                detected_open_entities or detected_close_entities
-            ) and current_day.lower() == "sunday":
-                response = f"วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+                if "Sunday" not in detected_day_entities:
+                    response = f"{thai_date} ห้องสมุดไม่ปิดให้บริการครับ"
+                else:
+                    response = f"{thai_date} ห้องสมุดปิดให้บริการครับ"
+            elif detected_today_entities and detected_open_entities:
+                if current_day == "Sunday":
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
+                else :
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
+            elif detected_today_entities and detected_close_entities:
+                if current_day == "Sunday":
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดปิดให้บริการครับ"
+                else :
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดให้บริการครับ"
+            elif detected_open_entities :
+                if current_day == "Sunday":
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
+                else :
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดให้บริการครับ"
+            elif detected_close_entities :
+                if current_day == "Sunday":
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
+                else :
+                    response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดให้บริการครับ"
 
             dispatcher.utter_message(response)
 
