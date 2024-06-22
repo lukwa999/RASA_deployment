@@ -7,6 +7,6 @@ def custom_tokenizer(text):
     return tokens
 
 # Test the custom tokenizer
-text = "สุกนี้ห้องสมุดเปิดกี่โมงอะ"
+text = "วันจันทร์ห้องสมุดเปิดไหม"
 tokens = custom_tokenizer(text)
 print(tokens)

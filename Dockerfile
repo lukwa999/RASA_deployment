@@ -14,7 +14,7 @@ USER root
 # Install pythainlp and spacy_pythainlp
 RUN pip install rasa[full]==3.6.19
 RUN pip install spacy==3.7.4
-RUN pip install pythainlp==5.0.2
+RUN pip install pythainlp
 RUN pip install spacy-pythainlp==0.1
 RUN pip install spacy-thai==0.7.3
 RUN pip install tzdata

@@ -30,7 +30,7 @@ class ThaiTokenizer(Tokenizer):
             # This *must* be added due to the parent class.
             "intent_split_symbol": "_",
             # This is the spaCy language setting.
-            "case_sensitive": True,
+            "case_sensitive": False,
         }
 
     def __init__(self, config: Dict[Text, Any]) -> None:

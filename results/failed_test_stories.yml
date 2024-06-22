@@ -1,6 +1,0 @@
-version: "3.1"
-stories:
-- story: Respond with everyday_open_everyday_close (.\tests\test_stories.yml)
-  steps:
-  - intent: everyday_open_everyday_close  # predicted: everyday_open_everyday_close: อยากจะรู้ว่สห้องสมุด[เปิด](open)วันไหนบ้างนะ
-  - action: utter_everyday_open_everyday_close
