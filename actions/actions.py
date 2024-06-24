@@ -169,12 +169,12 @@ class ActionHandleDayOpen(Action):
                         if current_hour > 8 and current_hour < 20:
                             response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ"
                         else:
-                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาสหน้า"
                     else:  # It's Saturday
                         if current_hour > 9 and current_hour < 18:
                             response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ"
                         else:
-                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาสหน้า"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_now_entities and detected_close_entities:
@@ -195,7 +195,7 @@ class ActionHandleDayOpen(Action):
                             # Construct the response message
                             response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ และเหลือเวลา {remaining_hours} ชั่วโมง {remaining_minutes} นาที ก่อนจะปิด"
                         else:
-                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาสหน้า"
                     else:  # It's Saturday
                         if current_hour > 9 and current_hour < 18:
                             
@@ -210,16 +210,16 @@ class ActionHandleDayOpen(Action):
                             # Construct the response message
                             response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดเปิดทำการแล้วครับ และเหลือเวลา {remaining_hours} ชั่วโมง {remaining_minutes} นาที ก่อนจะปิด"
                         else:
-                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาศหน้า"
+                            response = f"ตอนนี้เวลา {current_time.strftime('%H:%M')} ห้องสมุดปิดทำการแล้วครับ โปรดมาใช้บริการใหม่โอกาสหน้า"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_day_entities and (detected_open_entities or detected_close_entities):
                 day_thai = thai_day_names.get(detected_day_entities[0])
                 if "Sunday" not in detected_day_entities:
                     if "Saturday" not in detected_day_entities:
-                        response = f"วัน {day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
+                        response = f"{day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดทำการเวลา 20:00 น ครับ"
                     else : #Saturday
-                        response = f"วัน {day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
+                        response = f"{day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดทำการเวลา 18:00 น ครับ"
                 else:
                     response = "วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_today_entities and (detected_open_entities or detected_close_entities):
@@ -227,9 +227,9 @@ class ActionHandleDayOpen(Action):
                 if current_day != "Sunday":
                     # Check if it's within opening hours
                     if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดทำการเวลา 20:00 น ครับ"
                     else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดทำการเวลา 18:00 น ครับ"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
             elif detected_open_entities or detected_close_entities:
@@ -237,11 +237,13 @@ class ActionHandleDayOpen(Action):
                 if current_day != "Sunday":
                     # Check if it's within opening hours
                     if current_day != "Saturday":
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดเทำการวลา 20:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 8:00 น ครับ และ ปิดทำการเวลา 20:00 น ครับ"
                     else:  # It's Saturday
-                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดเทำการวลา 18:00 น ครับ"
+                        response = f"วันนี้ {current_day_thai} ห้องสมุดเปิดทำการเวลา 9:00 น ครับ และ ปิดทำการเวลา 18:00 น ครับ"
                 else:
                     response = "วันนี้ วันอาทิตย์ ห้องสมุดปิดทำการครับ"
+        else :
+            response = "เราไม่เข้าใจที่คุณถาม กรุณาถามใหม่อีกครั้ง"
             # Utter the response message
         dispatcher.utter_message(response)
 
@@ -342,7 +344,9 @@ class ActionHandleLibraryStatus(Action):
                     response = f"วันนี้ {current_day_thai} ห้องสมุดปิดทำการครับ"
                 else :
                     response = f"วันนี้ {current_day_thai} ห้องสมุดไม่ปิดให้บริการครับ"
+        else :
+            response = "เราไม่เข้าใจที่คุณถาม กรุณาถามใหม่อีกครั้ง"
 
-            dispatcher.utter_message(response)
+        dispatcher.utter_message(response)
 
         return [SlotSet("ask_day_open_close", None)]

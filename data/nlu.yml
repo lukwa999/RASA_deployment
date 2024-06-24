@@ -137,6 +137,7 @@ nlu:
 
   - intent: ask_day_open_close
     examples: |
+      - ห้องสมุด[เปิด](open)ไหม
       - [วันนี้](today)ห้องสมุด[เปิด](open)ไหม ค่ะ
       - [วันนี้](today)ห้องสมุด[เปิด](open)มั้ย
       - [วันนี้](today) ห้องสมุด[ปิด](close)ไหม ครับ

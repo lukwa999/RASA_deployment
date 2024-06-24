@@ -1,12 +1,31 @@
 {
-  "proxy_step": {
-    "precision": 0.9090909090909091,
-    "recall": 0.8823529411764706,
-    "f1-score": 0.8955223880597014,
+  "everyday_open_everyday_close": {
+    "precision": 0.9230769230769231,
+    "recall": 0.8,
+    "f1-score": 0.8571428571428571,
+    "support": 30,
+    "confused_with": {
+      "ask_day_open_close": 5,
+      "ask_time_open_close": 1
+    }
+  },
+  "ask_proxy": {
+    "precision": 0.96875,
+    "recall": 0.9117647058823529,
+    "f1-score": 0.9393939393939394,
     "support": 34,
     "confused_with": {
-      "goodbye": 2,
-      "ask_proxy": 2
+      "renew_book": 2,
+      "proxy_step": 1
+    }
+  },
+  "greet": {
+    "precision": 0.96,
+    "recall": 0.9795918367346939,
+    "f1-score": 0.9696969696969697,
+    "support": 49,
+    "confused_with": {
+      "goodbye": 1
     }
   },
   "tutor_available": {
@@ -18,101 +37,79 @@
       "tutor_step": 1
     }
   },
-  "goodbye": {
-    "precision": 0.9032258064516129,
-    "recall": 0.9032258064516129,
-    "f1-score": 0.9032258064516129,
-    "support": 31,
+  "ask_time_open_close": {
+    "precision": 0.8409090909090909,
+    "recall": 0.8043478260869565,
+    "f1-score": 0.8222222222222223,
+    "support": 46,
     "confused_with": {
-      "greet": 2,
+      "ask_day_open_close": 9
+    }
+  },
+  "renew_book": {
+    "precision": 0.9583333333333334,
+    "recall": 0.9787234042553191,
+    "f1-score": 0.968421052631579,
+    "support": 47,
+    "confused_with": {
       "proxy_step": 1
     }
   },
-  "greet": {
-    "precision": 0.9411764705882353,
-    "recall": 0.9795918367346939,
-    "f1-score": 0.96,
-    "support": 49,
+  "proxy_step": {
+    "precision": 0.9117647058823529,
+    "recall": 0.9117647058823529,
+    "f1-score": 0.9117647058823528,
+    "support": 34,
     "confused_with": {
-      "goodbye": 1
-    }
-  },
-  "everyday_open_everyday_close": {
-    "precision": 0.8333333333333334,
-    "recall": 0.8333333333333334,
-    "f1-score": 0.8333333333333334,
-    "support": 30,
-    "confused_with": {
-      "ask_time_open_close": 3,
-      "greet": 1
-    }
-  },
-  "ask_day_open_close": {
-    "precision": 0.8125,
-    "recall": 0.7647058823529411,
-    "f1-score": 0.787878787878788,
-    "support": 51,
-    "confused_with": {
-      "ask_time_open_close": 8,
-      "everyday_open_everyday_close": 4
-    }
-  },
-  "ask_time_open_close": {
-    "precision": 0.7708333333333334,
-    "recall": 0.8043478260869565,
-    "f1-score": 0.7872340425531915,
-    "support": 46,
-    "confused_with": {
-      "ask_day_open_close": 8,
-      "everyday_open_everyday_close": 1
+      "greet": 2,
+      "ask_proxy": 1
     }
   },
   "tutor_step": {
-    "precision": 0.9473684210526315,
+    "precision": 0.972972972972973,
     "recall": 0.972972972972973,
-    "f1-score": 0.9599999999999999,
+    "f1-score": 0.972972972972973,
     "support": 37,
     "confused_with": {
       "tutor_available": 1
     }
   },
-  "renew_book": {
-    "precision": 0.9574468085106383,
-    "recall": 0.9574468085106383,
-    "f1-score": 0.9574468085106385,
-    "support": 47,
+  "goodbye": {
+    "precision": 0.967741935483871,
+    "recall": 0.967741935483871,
+    "f1-score": 0.967741935483871,
+    "support": 31,
     "confused_with": {
-      "tutor_step": 1,
       "proxy_step": 1
     }
   },
-  "ask_proxy": {
-    "precision": 0.9393939393939394,
-    "recall": 0.9117647058823529,
-    "f1-score": 0.9253731343283583,
-    "support": 34,
+  "ask_day_open_close": {
+    "precision": 0.7543859649122807,
+    "recall": 0.8431372549019608,
+    "f1-score": 0.7962962962962964,
+    "support": 51,
     "confused_with": {
-      "renew_book": 2,
-      "proxy_step": 1
+      "ask_time_open_close": 6,
+      "everyday_open_everyday_close": 2
     }
   },
-  "accuracy": 0.8948717948717949,
+  "accuracy": 0.9128205128205128,
   "macro avg": {
-    "precision": 0.8982110957238504,
-    "recall": 0.8977484048985843,
-    "f1-score": 0.8977756236599495,
+    "precision": 0.9225676862054698,
+    "recall": 0.9137786577684353,
+    "f1-score": 0.917339488720693,
     "support": 390
   },
   "weighted avg": {
-    "precision": 0.8946528123579208,
-    "recall": 0.8948717948717949,
-    "f1-score": 0.8945257228216899,
+    "precision": 0.9150435301315869,
+    "recall": 0.9128205128205128,
+    "f1-score": 0.9131229589124324,
     "support": 390
   },
   "micro avg": {
-    "precision": 0.8948717948717949,
-    "recall": 0.8948717948717949,
-    "f1-score": 0.8948717948717949,
+    "precision": 0.9128205128205128,
+    "recall": 0.9128205128205128,
+    "f1-score": 0.9128205128205128,
     "support": 390
   }
 }
