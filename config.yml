@@ -38,6 +38,16 @@ pipeline:
     features: [
       [
         "bias",
+        "low",
+        "prefix5",
+        "prefix2",
+        "suffix5",
+        "suffix3",
+        "suffix2",
+        "upper",
+        "title",
+        "digit",
+        "pattern",
         "text_dense_features"
       ],
     ]
@@ -58,10 +68,6 @@ policies:
     core_fallback_threshold: 0.6
     core_fallback_action_name: action_default_fallback
     enable_fallback_prediction: true
-  - name: UnexpecTEDIntentPolicy
-    max_history: 10
-    epochs: 200
-    constrain_similarities: true
   - name: TEDPolicy
     max_history: 10
     epochs: 200
